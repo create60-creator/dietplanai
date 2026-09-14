@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DietPlan AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0f14;
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 25px 8%;
+            border-bottom: 1px solid #252b33;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #45e38a;
+        }
+
+        .hero {
+            max-width: 1000px;
+            margin: auto;
+            padding: 90px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 7vw, 72px);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #45e38a;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #aeb6c2;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .start-btn {
+            margin-top: 35px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            background: #45e38a;
+            color: #07100b;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .features {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #121820;
+            border: 1px solid #252d37;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #9ba5b2;
+            line-height: 1.5;
+        }
+
+        #message {
+            text-align: center;
+            margin: 40px;
+            color: #45e38a;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        DietPlan <span>AI</span>
+    </div>
+</header>
+
+<section class="hero">
+
+    <h1>
+        Your AI <span>Fitness Coach.</span>
+    </h1>
+
+    <p>
+        Personalized nutrition, workouts and progress tracking
+        built around your body, goals and lifestyle.
+    </p>
+
+    <button class="start-btn" onclick="startCoach()">
+        Start My Fitness Plan
+    </button>
+
+</section>
+
+<section class="features">
+
+    <div class="card">
+        <h3>🍎 Personalized Diet</h3>
+        <p>
+            Build nutrition plans based on your goal,
+            calories, preferences and food restrictions.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>🏋️ Smart Workouts</h3>
+        <p>
+            Get structured training plans based on your
+            experience, equipment and goals.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>📈 Progress Tracking</h3>
+        <p>
+            Track weight, measurements, strength and
+            consistency every week.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>🔮 Progress Forecast</h3>
+        <p>
+            Estimate your progress timeline using your
+            actual weekly trends.
+        </p>
+    </div>
+
+</section>
+
+<div id="message">
+    Your personal fitness assessment is coming next...
+</div>
+
+<script>
+
+function startCoach() {
+
+    const message = document.getElementById("message");
+
+    message.style.display = "block";
+
+    message.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
