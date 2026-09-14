@@ -1,111 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DietPlan AI</title>
+<title>DietPlan AI | Personal Fitness Coach</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #0b0f14;
-            color: white;
-            min-height: 100vh;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #080b10;
+    color: white;
+    min-height: 100vh;
+}
 
-        header {
-            padding: 25px 8%;
-            border-bottom: 1px solid #252b33;
-        }
+header {
+    padding: 20px 7%;
+    border-bottom: 1px solid #202631;
+}
 
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-        }
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
 
-        .logo span {
-            color: #45e38a;
-        }
+.logo span {
+    color: #43e88a;
+}
 
-        .hero {
-            max-width: 1000px;
-            margin: auto;
-            padding: 90px 20px;
-            text-align: center;
-        }
+.container {
+    width: 92%;
+    max-width: 900px;
+    margin: auto;
+}
 
-        .hero h1 {
-            font-size: clamp(40px, 7vw, 72px);
-            margin-bottom: 20px;
-        }
+.hero {
+    text-align: center;
+    padding: 80px 20px 50px;
+}
 
-        .hero h1 span {
-            color: #45e38a;
-        }
+.hero h1 {
+    font-size: clamp(40px, 7vw, 70px);
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
 
-        .hero p {
-            max-width: 650px;
-            margin: auto;
-            color: #aeb6c2;
-            font-size: 18px;
-            line-height: 1.6;
-        }
+.hero h1 span {
+    color: #43e88a;
+}
 
-        .start-btn {
-            margin-top: 35px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            background: #45e38a;
-            color: #07100b;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    color: #9ba5b1;
+    font-size: 18px;
+    line-height: 1.6;
+}
 
-        .start-btn:hover {
-            transform: translateY(-2px);
-        }
+.main-button {
+    margin-top: 30px;
+    padding: 16px 28px;
+    border: none;
+    border-radius: 10px;
+    background: #43e88a;
+    color: #061009;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .features {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+.main-button:hover {
+    transform: translateY(-2px);
+}
 
-        .card {
-            background: #121820;
-            border: 1px solid #252d37;
-            border-radius: 15px;
-            padding: 30px;
-        }
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px 0 60px;
+}
 
-        .card h3 {
-            margin-bottom: 10px;
-        }
+.card {
+    background: #11161d;
+    border: 1px solid #252d37;
+    border-radius: 14px;
+    padding: 25px;
+}
 
-        .card p {
-            color: #9ba5b2;
-            line-height: 1.5;
-        }
+.card h3 {
+    margin-bottom: 10px;
+}
 
-        #message {
-            text-align: center;
-            margin: 40px;
-            color: #45e38a;
-            display: none;
-        }
-    </style>
+.card p {
+    color: #8e99a6;
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.assessment {
+    padding: 50px 0;
+}
+
+.assessment-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.assessment-header h2 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.assessment-header p {
+    color: #929ca8;
+}
+
+.form-box {
+    background: #11161d;
+    border: 1px solid #252d37;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.progress {
+    height: 7px;
+    background: #252b33;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 25%;
+    height: 100%;
+    background: #43e88a;
+    transition: width .3s;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.step h3 {
+    margin-bottom: 8px;
+    font-size: 25px;
+}
+
+.step p {
+    color: #8f99a6;
+    margin-bottom: 25px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.field {
+    margin-bottom: 18px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    color: #d5dbe1;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid #303945;
+    background: #080b10;
+    color: white;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #43e88a;
+}
+
+.goal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.goal {
+    padding: 20px;
+    border: 1px solid #303945;
+    border-radius: 10px;
+    background: #0b1016;
+    cursor: pointer;
+}
+
+.goal:hover {
+    border-color: #43e88a;
+}
+
+.goal.selected {
+    border-color: #43e88a;
+    background: #10251a;
+}
+
+.goal strong {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.goal small {
+    color: #8f99a6;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.back-button,
+.next-button {
+    padding: 13px 22px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.back-button {
+    background: #252c35;
+    color: white;
+}
+
+.next-button {
+    background: #43e88a;
+    color: #061009;
+}
+
+.results {
+    padding: 50px 0 80px;
+}
+
+.results h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 35px;
+}
+
+.results-intro {
+    text-align: center;
+    color: #909aa7;
+    margin-bottom: 30px;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.result-card {
+    background: #11161d;
+    border: 1px solid #252d37;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.result-card small {
+    color: #8f99a6;
+}
+
+.result-card strong {
+    display: block;
+    font-size: 30px;
+    color: #43e88a;
+    margin: 8px 0;
+}
+
+.info {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #10251a;
+    border: 1px solid #285b3d;
+    line-height: 1.6;
+}
+
+.warning {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #211b0e;
+    border: 1px solid #66501b;
+    color: #e8d69b;
+    line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+
+    .features,
+    .grid,
+    .goal-grid,
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 50px;
+    }
+
+    .form-box {
+        padding: 20px;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -116,1404 +353,1118 @@
     </div>
 </header>
 
-<section class="hero">
 
-    <h1>
-        Your AI <span>Fitness Coach.</span>
-    </h1>
+<!-- LANDING PAGE -->
 
-    <p>
-        Personalized nutrition, workouts and progress tracking
-        built around your body, goals and lifestyle.
-    </p>
+<section id="home">
 
-    <button class="start-btn" onclick="startCoach()">
-        Start My Fitness Plan
-    </button>
+    <div class="container">
+
+        <div class="hero">
+
+            <h1>
+                Your Personal
+                <span>AI Fitness Coach.</span>
+            </h1>
+
+            <p>
+                Personalized nutrition, workout planning and progress
+                tracking based on your body, goals, lifestyle and preferences.
+            </p>
+
+            <button class="main-button" id="startButton">
+                Start My Fitness Journey →
+            </button>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="card">
+                <h3>🍎 Nutrition</h3>
+                <p>
+                    Personalized calorie and protein targets
+                    based on your profile and goal.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🏋️ Training</h3>
+                <p>
+                    Build workout plans around your experience,
+                    schedule and equipment.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📈 Progress</h3>
+                <p>
+                    Track your progress and estimate how long
+                    your goal may take.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
-<section class="features">
 
-    <div class="card">
-        <h3>🍎 Personalized Diet</h3>
-        <p>
-            Build nutrition plans based on your goal,
-            calories, preferences and food restrictions.
-        </p>
-    </div>
+<!-- ASSESSMENT -->
 
-    <div class="card">
-        <h3>🏋️ Smart Workouts</h3>
-        <p>
-            Get structured training plans based on your
-            experience, equipment and goals.
-        </p>
-    </div>
+<section id="assessment" class="assessment hidden">
 
-    <div class="card">
-        <h3>📈 Progress Tracking</h3>
-        <p>
-            Track weight, measurements, strength and
-            consistency every week.
-        </p>
-    </div>
+    <div class="container">
 
-    <div class="card">
-        <h3>🔮 Progress Forecast</h3>
-        <p>
-            Estimate your progress timeline using your
-            actual weekly trends.
-        </p>
+        <div class="assessment-header">
+
+            <h2>Let's Build Your Plan</h2>
+
+            <p>
+                Answer a few questions so your coach understands you.
+            </p>
+
+        </div>
+
+
+        <div class="form-box">
+
+            <div class="progress">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+
+            <!-- STEP 1 -->
+
+            <div id="step1" class="step active">
+
+                <h3>👤 About You</h3>
+
+                <p>
+                    Basic information about your body.
+                </p>
+
+                <div class="grid">
+
+                    <div class="field">
+
+                        <label>Age</label>
+
+                        <input
+                            id="age"
+                            type="number"
+                            placeholder="25"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>Sex</label>
+
+                        <select id="sex">
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="male">
+                                Male
+                            </option>
+
+                            <option value="female">
+                                Female
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>Height (cm)</label>
+
+                        <input
+                            id="height"
+                            type="number"
+                            placeholder="175"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>Current Weight (kg)</label>
+
+                        <input
+                            id="weight"
+                            type="number"
+                            placeholder="70"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>Target Weight (kg)</label>
+
+                        <input
+                            id="targetWeight"
+                            type="number"
+                            placeholder="65"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>Activity Level</label>
+
+                        <select id="activity">
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="1.2">
+                                Sedentary
+                            </option>
+
+                            <option value="1.375">
+                                Lightly Active
+                            </option>
+
+                            <option value="1.55">
+                                Moderately Active
+                            </option>
+
+                            <option value="1.725">
+                                Very Active
+                            </option>
+
+                            <option value="1.9">
+                                Extremely Active
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <div></div>
+
+                    <button
+                        class="next-button"
+                        id="step1Next"
+                    >
+                        Continue →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div id="step2" class="step">
+
+                <h3>🎯 Your Goal</h3>
+
+                <p>
+                    What are you trying to achieve?
+                </p>
+
+
+                <div class="goal-grid">
+
+                    <div class="goal" data-goal="lose">
+
+                        <strong>🔥 Lose Fat</strong>
+
+                        <small>
+                            Reduce body fat while preserving muscle.
+                        </small>
+
+                    </div>
+
+
+                    <div class="goal" data-goal="gain">
+
+                        <strong>💪 Gain Weight</strong>
+
+                        <small>
+                            Increase body weight gradually.
+                        </small>
+
+                    </div>
+
+
+                    <div class="goal" data-goal="muscle">
+
+                        <strong>🏋️ Build Muscle</strong>
+
+                        <small>
+                            Focus on strength and muscle growth.
+                        </small>
+
+                    </div>
+
+
+                    <div class="goal" data-goal="maintain">
+
+                        <strong>⚖️ Maintain</strong>
+
+                        <small>
+                            Maintain weight and improve fitness.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field" style="margin-top:20px">
+
+                    <label>Training Experience</label>
+
+                    <select id="experience">
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option>
+                            Beginner
+                        </option>
+
+                        <option>
+                            Intermediate
+                        </option>
+
+                        <option>
+                            Advanced
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Training Days Per Week</label>
+
+                    <select id="trainingDays">
+
+                        <option value="2">2 days</option>
+                        <option value="3">3 days</option>
+                        <option value="4">4 days</option>
+                        <option value="5">5 days</option>
+                        <option value="6">6 days</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        class="back-button"
+                        id="step2Back"
+                    >
+                        ← Back
+                    </button>
+
+                    <button
+                        class="next-button"
+                        id="step2Next"
+                    >
+                        Continue →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div id="step3" class="step">
+
+                <h3>🍎 Nutrition</h3>
+
+                <p>
+                    Tell your coach what you eat and what you cannot eat.
+                </p>
+
+
+                <div class="field">
+
+                    <label>Diet Preference</label>
+
+                    <select id="diet">
+
+                        <option>
+                            No Preference
+                        </option>
+
+                        <option>
+                            Vegetarian
+                        </option>
+
+                        <option>
+                            Vegan
+                        </option>
+
+                        <option>
+                            Eggetarian
+                        </option>
+
+                        <option>
+                            Non-Vegetarian
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Food Allergies</label>
+
+                    <textarea
+                        id="allergies"
+                        placeholder="Example: peanuts, shellfish, milk..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Foods You Avoid or Dislike</label>
+
+                    <textarea
+                        id="avoidFoods"
+                        placeholder="Example: mushrooms, fish..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        class="back-button"
+                        id="step3Back"
+                    >
+                        ← Back
+                    </button>
+
+                    <button
+                        class="next-button"
+                        id="step3Next"
+                    >
+                        Continue →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 4 -->
+
+            <div id="step4" class="step">
+
+                <h3>🛡️ Health & Safety</h3>
+
+                <p>
+                    This information helps the coach identify situations
+                    where professional guidance may be needed.
+                </p>
+
+
+                <div class="field">
+
+                    <label>Health Conditions</label>
+
+                    <textarea
+                        id="conditions"
+                        placeholder="Example: diabetes, hypertension, asthma, none..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Injuries or Physical Limitations</label>
+
+                    <textarea
+                        id="injuries"
+                        placeholder="Example: knee injury, shoulder pain, none..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Anything Else?</label>
+
+                    <textarea
+                        id="notes"
+                        placeholder="Anything your coach should know..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="warning">
+
+                    <strong>Important:</strong>
+                    DietPlan AI is a fitness planning tool and does not
+                    replace medical advice. If you have a medical condition,
+                    significant injury, take medication affecting exercise
+                    or nutrition, are pregnant, or have a history of an
+                    eating disorder, seek appropriate professional guidance.
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        class="back-button"
+                        id="step4Back"
+                    >
+                        ← Back
+                    </button>
+
+                    <button
+                        class="next-button"
+                        id="generateButton"
+                    >
+                        Generate My Plan →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULTS -->
+
+            <div id="results" class="step">
+
+                <h3>🔥 Your Starting Plan</h3>
+
+                <p>
+                    These are estimates and will become more accurate
+                    as the app learns from your weekly progress.
+                </p>
+
+
+                <div class="result-grid">
+
+                    <div class="result-card">
+
+                        <small>BMR</small>
+
+                        <strong id="bmr">
+                            —
+                        </strong>
+
+                        <small> kcal/day</small>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <small>Maintenance</small>
+
+                        <strong id="maintenance">
+                            —
+                        </strong>
+
+                        <small> kcal/day</small>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <small>Starting Calories</small>
+
+                        <strong id="calories">
+                            —
+                        </strong>
+
+                        <small> kcal/day</small>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <small>Protein Target</small>
+
+                        <strong id="protein">
+                            —
+                        </strong>
+
+                        <small> g/day</small>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <small>Current Weight</small>
+
+                        <strong id="currentWeight">
+                            —
+                        </strong>
+
+                        <small> kg</small>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <small>Target Weight</small>
+
+                        <strong id="targetWeight">
+                            —
+                        </strong>
+
+                        <small> kg</small>
+
+                    </div>
+
+                </div>
+
+
+                <div id="timeline" class="info"></div>
+
+                <div id="healthMessage"></div>
+
+            </div>
+
+        </div>
+
     </div>
 
 </section>
-
-<div id="message">
-    Your personal fitness assessment is coming next...
-</div>
-
-<script>
-
-function startCoach() {
-
-    const message = document.getElementById("message");
-
-    message.style.display = "block";
-
-    message.scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-</script>
-
-</body>
-</html>
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DietPlan AI — Personal Fitness Coach</title>
-
-<style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#080c11;
-    color:#f5f7fa;
-    min-height:100vh;
-}
-
-header{
-    padding:22px 7%;
-    border-bottom:1px solid #202832;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-size:25px;
-    font-weight:800;
-}
-
-.logo span{
-    color:#45e38a;
-}
-
-.badge{
-    color:#45e38a;
-    font-size:13px;
-    border:1px solid #265c42;
-    padding:7px 12px;
-    border-radius:20px;
-}
-
-.container{
-    width:min(900px,92%);
-    margin:50px auto;
-}
-
-.hero{
-    text-align:center;
-    margin-bottom:45px;
-}
-
-.hero h1{
-    font-size:clamp(36px,6vw,60px);
-    margin-bottom:15px;
-}
-
-.hero h1 span{
-    color:#45e38a;
-}
-
-.hero p{
-    color:#9da7b3;
-    font-size:17px;
-    line-height:1.6;
-    max-width:650px;
-    margin:auto;
-}
-
-.progress-container{
-    margin-bottom:30px;
-}
-
-.progress-text{
-    display:flex;
-    justify-content:space-between;
-    color:#8f99a6;
-    font-size:13px;
-    margin-bottom:8px;
-}
-
-.progress{
-    height:7px;
-    background:#1b222b;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progress-bar{
-    width:0%;
-    height:100%;
-    background:#45e38a;
-    transition:.3s;
-}
-
-.form-card{
-    background:#10161d;
-    border:1px solid #242d37;
-    border-radius:18px;
-    padding:30px;
-}
-
-.step{
-    display:none;
-}
-
-.step.active{
-    display:block;
-}
-
-.step h2{
-    margin-bottom:8px;
-}
-
-.step-description{
-    color:#8f99a6;
-    margin-bottom:25px;
-    line-height:1.5;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-}
-
-.field{
-    margin-bottom:18px;
-}
-
-.field.full{
-    grid-column:1/-1;
-}
-
-label{
-    display:block;
-    margin-bottom:8px;
-    font-size:14px;
-    color:#cbd2da;
-}
-
-input,
-select,
-textarea{
-    width:100%;
-    background:#080c11;
-    border:1px solid #303a46;
-    color:white;
-    padding:13px;
-    border-radius:9px;
-    outline:none;
-    font-size:15px;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:#45e38a;
-}
-
-textarea{
-    min-height:100px;
-    resize:vertical;
-}
-
-.goal-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.goal{
-    border:1px solid #303a46;
-    background:#0b1016;
-    padding:18px;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-.goal:hover{
-    border-color:#45e38a;
-}
-
-.goal.selected{
-    border-color:#45e38a;
-    background:#102219;
-}
-
-.goal strong{
-    display:block;
-    margin-bottom:5px;
-}
-
-.goal small{
-    color:#8f99a6;
-}
-
-.checkbox-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.checkbox{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    background:#0b1016;
-    border:1px solid #29333e;
-    padding:12px;
-    border-radius:9px;
-}
-
-.checkbox input{
-    width:auto;
-}
-
-.buttons{
-    display:flex;
-    justify-content:space-between;
-    margin-top:30px;
-}
-
-button{
-    border:none;
-    border-radius:9px;
-    padding:13px 22px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.next{
-    background:#45e38a;
-    color:#061009;
-}
-
-.back{
-    background:#202833;
-    color:white;
-}
-
-button:hover{
-    opacity:.9;
-}
-
-.results{
-    display:none;
-}
-
-.result-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin:25px 0;
-}
-
-.result{
-    background:#0b1016;
-    border:1px solid #29333e;
-    border-radius:13px;
-    padding:20px;
-}
-
-.result small{
-    color:#8f99a6;
-}
-
-.result strong{
-    display:block;
-    font-size:28px;
-    margin-top:8px;
-    color:#45e38a;
-}
-
-.warning{
-    background:#211b0e;
-    border:1px solid #66501b;
-    padding:17px;
-    border-radius:12px;
-    color:#e6d49b;
-    margin-top:20px;
-    line-height:1.5;
-}
-
-.success{
-    background:#0d2015;
-    border:1px solid #245c3a;
-    padding:17px;
-    border-radius:12px;
-    line-height:1.5;
-}
-
-@media(max-width:650px){
-
-    .grid,
-    .goal-grid,
-    .checkbox-grid,
-    .result-grid{
-        grid-template-columns:1fr;
-    }
-
-    .form-card{
-        padding:20px;
-    }
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-<div class="logo">
-DietPlan <span>AI</span>
-</div>
-
-<div class="badge">
-Personal Fitness Coach
-</div>
-
-</header>
-
-
-<div class="container">
-
-
-<div class="hero">
-
-<h1>
-Build Your <span>Fitness Plan.</span>
-</h1>
-
-<p>
-Tell us about your body, goals, training and nutrition.
-DietPlan AI will use this information to create your personalized starting plan.
-</p>
-
-</div>
-
-
-<div class="progress-container">
-
-<div class="progress-text">
-
-<span id="stepLabel">
-Step 1 of 4
-</span>
-
-<span id="percentage">
-25%
-</span>
-
-</div>
-
-<div class="progress">
-
-<div class="progress-bar" id="progressBar"></div>
-
-</div>
-
-</div>
-
-
-<div class="form-card">
-
-
-<!-- STEP 1 -->
-
-<div class="step active" id="step1">
-
-<h2>👤 About You</h2>
-
-<p class="step-description">
-Basic information helps us estimate your energy requirements.
-</p>
-
-<div class="grid">
-
-<div class="field">
-
-<label>Age</label>
-
-<input
-type="number"
-id="age"
-placeholder="e.g. 25"
-min="13"
-max="100"
->
-
-</div>
-
-
-<div class="field">
-
-<label>Sex</label>
-
-<select id="sex">
-
-<option value="">Select</option>
-
-<option value="male">
-Male
-</option>
-
-<option value="female">
-Female
-</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>Height (cm)</label>
-
-<input
-type="number"
-id="height"
-placeholder="e.g. 175"
->
-
-</div>
-
-
-<div class="field">
-
-<label>Current Weight (kg)</label>
-
-<input
-type="number"
-id="weight"
-placeholder="e.g. 70"
->
-
-</div>
-
-
-<div class="field">
-
-<label>Target Weight (kg)</label>
-
-<input
-type="number"
-id="targetWeight"
-placeholder="e.g. 65"
->
-
-</div>
-
-
-<div class="field">
-
-<label>Activity Level</label>
-
-<select id="activity">
-
-<option value="">
-Select
-</option>
-
-<option value="1.2">
-Sedentary — little exercise
-</option>
-
-<option value="1.375">
-Light — 1–3 days/week
-</option>
-
-<option value="1.55">
-Moderate — 3–5 days/week
-</option>
-
-<option value="1.725">
-Very active — 6–7 days/week
-</option>
-
-<option value="1.9">
-Extremely active
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-<div class="buttons">
-
-<div></div>
-
-<button class="next" onclick="nextStep(1)">
-Continue →
-</button>
-
-</div>
-
-</div>
-
-
-<!-- STEP 2 -->
-
-<div class="step" id="step2">
-
-<h2>🎯 Your Goal</h2>
-
-<p class="step-description">
-Choose what you want your training and nutrition plan to prioritize.
-</p>
-
-
-<div class="goal-grid">
-
-<div class="goal" onclick="selectGoal(this,'lose')">
-
-<strong>🔥 Lose Fat</strong>
-
-<small>
-Reduce body fat while preserving muscle.
-</small>
-
-</div>
-
-
-<div class="goal" onclick="selectGoal(this,'gain')">
-
-<strong>💪 Gain Weight</strong>
-
-<small>
-Increase body weight with a controlled surplus.
-</small>
-
-</div>
-
-
-<div class="goal" onclick="selectGoal(this,'muscle')">
-
-<strong>🏋️ Build Muscle</strong>
-
-<small>
-Prioritize resistance training and muscle growth.
-</small>
-
-</div>
-
-
-<div class="goal" onclick="selectGoal(this,'maintain')">
-
-<strong>⚖️ Maintain</strong>
-
-<small>
-Maintain body weight and improve fitness.
-</small>
-
-</div>
-
-</div>
-
-
-<div class="field" style="margin-top:25px">
-
-<label>Training Experience</label>
-
-<select id="experience">
-
-<option value="">
-Select
-</option>
-
-<option>
-Beginner
-</option>
-
-<option>
-Intermediate
-</option>
-
-<option>
-Advanced
-</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>How many days can you train per week?</label>
-
-<select id="days">
-
-<option value="2">2 days</option>
-<option value="3">3 days</option>
-<option value="4">4 days</option>
-<option value="5">5 days</option>
-<option value="6">6 days</option>
-
-</select>
-
-</div>
-
-
-<div class="buttons">
-
-<button class="back" onclick="previousStep(2)">
-← Back
-</button>
-
-<button class="next" onclick="nextStep(2)">
-Continue →
-</button>
-
-</div>
-
-</div>
-
-
-<!-- STEP 3 -->
-
-<div class="step" id="step3">
-
-<h2>🍎 Nutrition</h2>
-
-<p class="step-description">
-Tell your coach what you can and cannot eat.
-</p>
-
-
-<div class="field">
-
-<label>Diet Preference</label>
-
-<select id="diet">
-
-<option>
-No preference
-</option>
-
-<option>
-Vegetarian
-</option>
-
-<option>
-Vegan
-</option>
-
-<option>
-Eggetarian
-</option>
-
-<option>
-Non-vegetarian
-</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>Food Allergies</label>
-
-<textarea
-id="allergies"
-placeholder="Example: peanuts, shellfish, milk..."
-></textarea>
-
-</div>
-
-
-<div class="field">
-
-<label>Foods you dislike or avoid</label>
-
-<textarea
-id="avoidFoods"
-placeholder="Example: broccoli, fish..."
-></textarea>
-
-</div>
-
-
-<div class="buttons">
-
-<button class="back" onclick="previousStep(3)">
-← Back
-</button>
-
-<button class="next" onclick="nextStep(3)">
-Continue →
-</button>
-
-</div>
-
-</div>
-
-
-<!-- STEP 4 -->
-
-<div class="step" id="step4">
-
-<h2>🛡️ Health & Safety</h2>
-
-<p class="step-description">
-This information helps identify situations where professional guidance may be appropriate.
-</p>
-
-
-<div class="field">
-
-<label>
-Known health conditions
-</label>
-
-<textarea
-id="conditions"
-placeholder="Example: diabetes, hypertension, asthma, none..."
-></textarea>
-
-</div>
-
-
-<div class="field">
-
-<label>
-Current injuries or physical limitations
-</label>
-
-<textarea
-id="injuries"
-placeholder="Example: knee pain, shoulder injury, none..."
-></textarea>
-
-</div>
-
-
-<div class="field">
-
-<label>
-Anything else your coach should know?
-</label>
-
-<textarea
-id="notes"
-placeholder="Medications, dietary restrictions, training concerns, etc."
-></textarea>
-
-</div>
-
-
-<div class="warning">
-
-<strong>Important:</strong>
-
-DietPlan AI is a fitness planning tool, not a doctor.
-If you have a medical condition, injury, take medication that affects
-exercise/nutrition, are pregnant, or have a history of an eating disorder,
-consult an appropriate healthcare professional before making major changes.
-
-</div>
-
-
-<div class="buttons">
-
-<button class="back" onclick="previousStep(4)">
-← Back
-</button>
-
-<button class="next" onclick="generatePlan()">
-Generate My Plan →
-</button>
-
-</div>
-
-</div>
-
-
-<!-- RESULTS -->
-
-<div class="results" id="results">
-
-<h2>🔥 Your Starting Fitness Profile</h2>
-
-<p class="step-description">
-These are starting estimates. Your plan should be adjusted using your real progress over time.
-</p>
-
-
-<div class="result-grid">
-
-<div class="result">
-
-<small>BMR</small>
-
-<strong id="bmrResult">
-—
-</strong>
-
-<small> kcal/day</small>
-
-</div>
-
-
-<div class="result">
-
-<small>Estimated Maintenance</small>
-
-<strong id="tdeeResult">
-—
-</strong>
-
-<small> kcal/day</small>
-
-</div>
-
-
-<div class="result">
-
-<small>Starting Calories</small>
-
-<strong id="calorieResult">
-—
-</strong>
-
-<small> kcal/day</small>
-
-</div>
-
-</div>
-
-
-<div class="result-grid">
-
-<div class="result">
-
-<small>Protein Target</small>
-
-<strong id="proteinResult">
-—
-</strong>
-
-<small> g/day</small>
-
-</div>
-
-
-<div class="result">
-
-<small>Current Weight</small>
-
-<strong id="currentWeightResult">
-—
-</strong>
-
-<small> kg</small>
-
-</div>
-
-
-<div class="result">
-
-<small>Target Weight</small>
-
-<strong id="targetWeightResult">
-—
-</strong>
-
-<small> kg</small>
-
-</div>
-
-</div>
-
-
-<div class="success" id="timelineResult">
-
-Calculating your estimated timeline...
-
-</div>
-
-
-<div class="warning" id="healthWarning">
-
-</div>
-
-
-<div class="buttons">
-
-<button class="back" onclick="location.reload()">
-Start Again
-</button>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
 
 
 <script>
 
-let currentStep = 1;
+document.addEventListener("DOMContentLoaded", function () {
 
-let selectedGoal = "";
+    const home = document.getElementById("home");
+    const assessment = document.getElementById("assessment");
+
+    const startButton = document.getElementById("startButton");
+
+    const steps = [
+        document.getElementById("step1"),
+        document.getElementById("step2"),
+        document.getElementById("step3"),
+        document.getElementById("step4"),
+        document.getElementById("results")
+    ];
+
+    const progressBar =
+        document.getElementById("progressBar");
+
+    let currentStep = 0;
+
+    let selectedGoal = "";
 
 
-function updateProgress(){
+    /* START BUTTON */
 
-    const percentage = currentStep * 25;
+    startButton.addEventListener("click", function () {
 
-    document.getElementById("progressBar").style.width =
-        percentage + "%";
+        home.classList.add("hidden");
 
-    document.getElementById("percentage").textContent =
-        percentage + "%";
+        assessment.classList.remove("hidden");
 
-    document.getElementById("stepLabel").textContent =
-        "Step " + currentStep + " of 4";
-
-}
-
-
-function showStep(step){
-
-    document.querySelectorAll(".step").forEach(function(element){
-
-        element.classList.remove("active");
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     });
 
-    document.getElementById("step" + step)
-        .classList.add("active");
 
-    currentStep = step;
+    /* SHOW STEP */
 
-    updateProgress();
+    function showStep(number) {
 
-}
+        steps.forEach(function (step) {
+            step.classList.remove("active");
+        });
 
+        steps[number].classList.add("active");
 
-function nextStep(step){
+        currentStep = number;
 
-    if(step === 1){
+        const percentage =
+            ((number + 1) / 4) * 100;
 
-        const age = Number(document.getElementById("age").value);
-
-        const height = Number(document.getElementById("height").value);
-
-        const weight = Number(document.getElementById("weight").value);
-
-        const sex = document.getElementById("sex").value;
-
-        const activity = document.getElementById("activity").value;
-
-        if(!age || !height || !weight || !sex || !activity){
-
-            alert("Please complete all required fields.");
-
-            return;
-
+        if (number < 4) {
+            progressBar.style.width =
+                percentage + "%";
         }
 
     }
 
 
-    if(step === 2 && !selectedGoal){
+    /* STEP 1 */
 
-        alert("Please select your main goal.");
+    document
+        .getElementById("step1Next")
+        .addEventListener("click", function () {
 
-        return;
+            const age =
+                Number(document.getElementById("age").value);
 
-    }
+            const height =
+                Number(document.getElementById("height").value);
+
+            const weight =
+                Number(document.getElementById("weight").value);
+
+            const targetWeight =
+                Number(document.getElementById("targetWeight").value);
+
+            const sex =
+                document.getElementById("sex").value;
+
+            const activity =
+                document.getElementById("activity").value;
 
 
-    showStep(step + 1);
+            if (
+                !age ||
+                !height ||
+                !weight ||
+                !targetWeight ||
+                !sex ||
+                !activity
+            ) {
 
-}
+                alert("Please complete all the fields first.");
+
+                return;
+
+            }
 
 
-function previousStep(step){
+            if (age < 13 || age > 100) {
 
-    showStep(step - 1);
+                alert("Please enter a valid age.");
 
-}
+                return;
+
+            }
 
 
-function selectGoal(element,goal){
-
-    document.querySelectorAll(".goal")
-        .forEach(function(item){
-
-            item.classList.remove("selected");
+            showStep(1);
 
         });
 
-    element.classList.add("selected");
 
-    selectedGoal = goal;
+    /* GOAL SELECTION */
 
-}
+    document
+        .querySelectorAll(".goal")
+        .forEach(function (goal) {
 
+            goal.addEventListener("click", function () {
 
-function generatePlan(){
+                document
+                    .querySelectorAll(".goal")
+                    .forEach(function (item) {
+                        item.classList.remove("selected");
+                    });
 
-    const age =
-        Number(document.getElementById("age").value);
+                goal.classList.add("selected");
 
-    const height =
-        Number(document.getElementById("height").value);
+                selectedGoal =
+                    goal.getAttribute("data-goal");
 
-    const weight =
-        Number(document.getElementById("weight").value);
-
-    const targetWeight =
-        Number(document.getElementById("targetWeight").value);
-
-    const sex =
-        document.getElementById("sex").value;
-
-    const activity =
-        Number(document.getElementById("activity").value);
-
-
-    if(!age || !height || !weight || !targetWeight){
-
-        alert("Please complete your body information.");
-
-        return;
-
-    }
-
-
-    let bmr;
-
-
-    /*
-        Mifflin-St Jeor equation.
-        This is an estimate, not a medical measurement.
-    */
-
-    if(sex === "male"){
-
-        bmr =
-            (10 * weight) +
-            (6.25 * height) -
-            (5 * age) +
-            5;
-
-    }else{
-
-        bmr =
-            (10 * weight) +
-            (6.25 * height) -
-            (5 * age) -
-            161;
-
-    }
-
-
-    const tdee = bmr * activity;
-
-
-    let calories = tdee;
-
-
-    /*
-        Conservative starting adjustments.
-        We intentionally avoid aggressive targets.
-    */
-
-    if(selectedGoal === "lose"){
-
-        calories = tdee - 300;
-
-    }
-
-    else if(selectedGoal === "gain"){
-
-        calories = tdee + 250;
-
-    }
-
-    else if(selectedGoal === "muscle"){
-
-        calories = tdee + 150;
-
-    }
-
-
-    calories = Math.round(calories);
-
-    bmr = Math.round(bmr);
-
-    const maintenance =
-        Math.round(tdee);
-
-
-    /*
-        Protein target.
-
-        A simple starting estimate using
-        bodyweight rather than pretending
-        to know the user's exact needs.
-    */
-
-    let protein;
-
-    if(selectedGoal === "lose"){
-
-        protein = weight * 1.8;
-
-    }
-
-    else{
-
-        protein = weight * 1.6;
-
-    }
-
-
-    protein = Math.round(protein);
-
-
-    document.getElementById("bmrResult")
-        .textContent = bmr;
-
-    document.getElementById("tdeeResult")
-        .textContent = maintenance;
-
-    document.getElementById("calorieResult")
-        .textContent = calories;
-
-    document.getElementById("proteinResult")
-        .textContent = protein;
-
-    document.getElementById("currentWeightResult")
-        .textContent = weight;
-
-    document.getElementById("targetWeightResult")
-        .textContent = targetWeight;
-
-
-    calculateTimeline(
-        weight,
-        targetWeight,
-        selectedGoal
-    );
-
-
-    const conditions =
-        document.getElementById("conditions").value.trim();
-
-    const injuries =
-        document.getElementById("injuries").value.trim();
-
-    const healthWarning =
-        document.getElementById("healthWarning");
-
-
-    if(
-        conditions &&
-        conditions.toLowerCase() !== "none"
-    ){
-
-        healthWarning.innerHTML =
-        "<strong>Health flag:</strong> You reported a health condition. " +
-        "The calorie and training estimates shown here should not replace " +
-        "individual medical or dietetic advice.";
-
-        healthWarning.style.display = "block";
-
-    }
-
-    else if(
-        injuries &&
-        injuries.toLowerCase() !== "none"
-    ){
-
-        healthWarning.innerHTML =
-        "<strong>Training flag:</strong> You reported an injury or limitation. " +
-        "Exercise selection should be reviewed by an appropriate professional " +
-        "before training around the affected area.";
-
-        healthWarning.style.display = "block";
-
-    }
-
-    else{
-
-        healthWarning.style.display = "none";
-
-    }
-
-
-    document.querySelector(".progress-container")
-        .style.display = "none";
-
-    document.querySelector(".hero")
-        .style.display = "none";
-
-    document.querySelector(".form-card")
-        .classList.add("results-card");
-
-    document.querySelectorAll(".step")
-        .forEach(function(element){
-
-            element.style.display = "none";
+            });
 
         });
 
-    document.getElementById("results")
-        .style.display = "block";
 
-}
+    /* STEP 2 BACK */
 
+    document
+        .getElementById("step2Back")
+        .addEventListener("click", function () {
 
-function calculateTimeline(
-    currentWeight,
-    targetWeight,
-    goal
-){
+            showStep(0);
 
-    const difference =
-        Math.abs(targetWeight - currentWeight);
+        });
 
 
-    let weeklyRate;
+    /* STEP 2 NEXT */
+
+    document
+        .getElementById("step2Next")
+        .addEventListener("click", function () {
+
+            if (!selectedGoal) {
+
+                alert("Please select your goal.");
+
+                return;
+
+            }
+
+            showStep(2);
+
+        });
 
 
-    if(goal === "lose"){
+    /* STEP 3 BACK */
+
+    document
+        .getElementById("step3Back")
+        .addEventListener("click", function () {
+
+            showStep(1);
+
+        });
+
+
+    /* STEP 3 NEXT */
+
+    document
+        .getElementById("step3Next")
+        .addEventListener("click", function () {
+
+            showStep(3);
+
+        });
+
+
+    /* STEP 4 BACK */
+
+    document
+        .getElementById("step4Back")
+        .addEventListener("click", function () {
+
+            showStep(2);
+
+        });
+
+
+    /* GENERATE PLAN */
+
+    document
+        .getElementById("generateButton")
+        .addEventListener("click", function () {
+
+            generatePlan();
+
+        });
+
+
+    function generatePlan() {
+
+        const age =
+            Number(document.getElementById("age").value);
+
+        const height =
+            Number(document.getElementById("height").value);
+
+        const weight =
+            Number(document.getElementById("weight").value);
+
+        const targetWeight =
+            Number(document.getElementById("targetWeight").value);
+
+        const sex =
+            document.getElementById("sex").value;
+
+        const activity =
+            Number(document.getElementById("activity").value);
+
+
+        let bmr;
+
+
+        /* Mifflin-St Jeor estimate */
+
+        if (sex === "male") {
+
+            bmr =
+                (10 * weight) +
+                (6.25 * height) -
+                (5 * age) +
+                5;
+
+        } else {
+
+            bmr =
+                (10 * weight) +
+                (6.25 * height) -
+                (5 * age) -
+                161;
+
+        }
+
+
+        const maintenance =
+            bmr * activity;
+
+
+        let calories =
+            maintenance;
+
 
         /*
-            Conservative illustrative estimate.
-            Actual progress varies considerably.
+        Conservative starting adjustment.
+        The real app will later use weekly progress
+        to automatically adjust this.
         */
 
-        weeklyRate = currentWeight * 0.0075;
+        if (selectedGoal === "lose") {
+
+            calories =
+                maintenance - 300;
+
+        }
+
+        if (selectedGoal === "gain") {
+
+            calories =
+                maintenance + 250;
+
+        }
+
+        if (selectedGoal === "muscle") {
+
+            calories =
+                maintenance + 150;
+
+        }
+
+
+        if (calories < 1200) {
+            calories = 1200;
+        }
+
+
+        let protein;
+
+        if (selectedGoal === "lose") {
+
+            protein =
+                weight * 1.8;
+
+        } else {
+
+            protein =
+                weight * 1.6;
+
+        }
+
+
+        document.getElementById("bmr").textContent =
+            Math.round(bmr);
+
+        document.getElementById("maintenance").textContent =
+            Math.round(maintenance);
+
+        document.getElementById("calories").textContent =
+            Math.round(calories);
+
+        document.getElementById("protein").textContent =
+            Math.round(protein);
+
+        document.getElementById("currentWeight").textContent =
+            weight;
+
+        document.getElementById("targetWeight").textContent =
+            targetWeight;
+
+
+        createTimeline(
+            weight,
+            targetWeight
+        );
+
+
+        createHealthMessage();
+
+
+        showStep(4);
+
+        progressBar.style.width = "100%";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 
-    else if(goal === "gain" || goal === "muscle"){
 
-        weeklyRate = currentWeight * 0.0025;
+    function createTimeline(
+        weight,
+        targetWeight
+    ) {
+
+        const difference =
+            Math.abs(targetWeight - weight);
+
+
+        if (difference === 0) {
+
+            document.getElementById("timeline").innerHTML =
+                "<strong>You are already at your target weight.</strong><br>" +
+                "The next phase can focus on strength, fitness and body composition.";
+
+            return;
+
+        }
+
+
+        if (
+            selectedGoal === "maintain"
+        ) {
+
+            document.getElementById("timeline").innerHTML =
+                "<strong>Maintenance goal:</strong><br>" +
+                "Your focus will be maintaining your weight while improving " +
+                "strength, fitness and body composition.";
+
+            return;
+
+        }
+
+
+        let weeklyRate;
+
+
+        if (selectedGoal === "lose") {
+
+            weeklyRate =
+                weight * 0.0075;
+
+        } else {
+
+            weeklyRate =
+                weight * 0.0025;
+
+        }
+
+
+        if (weeklyRate < 0.1) {
+            weeklyRate = 0.1;
+        }
+
+
+        const weeks =
+            Math.ceil(difference / weeklyRate);
+
+
+        const months =
+            Math.max(
+                1,
+                Math.round(weeks / 4.345)
+            );
+
+
+        document.getElementById("timeline").innerHTML =
+            "<strong>Estimated timeline:</strong> " +
+            weeks +
+            " weeks (" +
+            months +
+            " months).<br><br>" +
+            "This is a starting estimate, not a guarantee. " +
+            "Your future weekly check-ins will replace this estimate " +
+            "with a trend based on your actual progress.";
 
     }
 
-    else{
 
-        document.getElementById("timelineResult")
-            .innerHTML =
-            "<strong>Timeline:</strong> Your goal is maintenance, " +
-            "so the focus should be improving fitness, strength and body composition.";
+    function createHealthMessage() {
 
-        return;
+        const conditions =
+            document
+                .getElementById("conditions")
+                .value
+                .trim();
+
+        const injuries =
+            document
+                .getElementById("injuries")
+                .value
+                .trim();
+
+
+        const healthMessage =
+            document.getElementById("healthMessage");
+
+
+        if (
+            (conditions &&
+            conditions.toLowerCase() !== "none") ||
+            (injuries &&
+            injuries.toLowerCase() !== "none")
+        ) {
+
+            healthMessage.className =
+                "warning";
+
+            healthMessage.innerHTML =
+                "<strong>⚠️ Professional guidance recommended</strong><br><br>" +
+                "You reported a health condition or physical limitation. " +
+                "The numbers above are general estimates and should not " +
+                "replace advice from a qualified healthcare or fitness professional.";
+
+        } else {
+
+            healthMessage.className =
+                "info";
+
+            healthMessage.innerHTML =
+                "<strong>✅ Profile created</strong><br><br>" +
+                "Your basic fitness profile is ready. " +
+                "The next version will use your nutrition preferences, " +
+                "allergies and training information to build your actual " +
+                "daily diet and workout plan.";
+
+        }
 
     }
 
-
-    if(weeklyRate <= 0){
-
-        weeklyRate = 0.1;
-
-    }
-
-
-    const weeks =
-        Math.ceil(difference / weeklyRate);
-
-
-    const months =
-        Math.max(1, Math.round(weeks / 4.345));
-
-
-    if(difference === 0){
-
-        document.getElementById("timelineResult")
-            .innerHTML =
-            "<strong>Timeline:</strong> You are already at your target weight. " +
-            "The focus can shift toward body composition, strength and performance.";
-
-        return;
-
-    }
-
-
-    document.getElementById("timelineResult")
-        .innerHTML =
-        "<strong>Estimated timeline:</strong> approximately " +
-        weeks +
-        " weeks (" +
-        months +
-        " months) based on a conservative starting trend. " +
-        "This is only an estimate — your weekly check-ins will be used " +
-        "to update the forecast.";
-
-}
-
-
-updateProgress();
-
+});
 </script>
 
 </body>
-
 </html>
-```
